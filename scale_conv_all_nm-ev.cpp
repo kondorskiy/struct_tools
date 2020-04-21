@@ -50,6 +50,18 @@ const int CONV = 0;
 
 
 /*--------------------------------------------------------------------
+  Get maximal value of the vector.
+--------------------------------------------------------------------*/
+double getMax(std::vector<double> &data)
+{
+  double max = 0.0;
+  for (int i = 0; i < data.size(); ++i)
+    if (max < data[i]) max = data[i];
+  return max;
+}
+
+
+/*--------------------------------------------------------------------
   Get list of files in the current directory with certain ending.
 --------------------------------------------------------------------*/
 void getFilesInCurrDirectory(
