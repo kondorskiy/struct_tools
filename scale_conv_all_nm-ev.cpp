@@ -11,7 +11,7 @@
     E-mail: kondorskiy@lebedev.ru, kondorskiy@gmail.com.
 
 
-  Last modified: April 07, 2020.
+  Last modified: April 21, 2020.
 
 ====================================================================*/
 
@@ -134,7 +134,7 @@ double nm2eV(double nm)
 /*--------------------------------------------------------------------
   Subroutine to transform and analyze the data.
 --------------------------------------------------------------------*/
-void work(std::string inp_file_name)
+void work(std::string inp_file_name, const double &factor)
 {
   std::vector<double> x, y;
   if (!readTwoColumnData(inp_file_name, x, y)) return;
@@ -144,13 +144,13 @@ void work(std::string inp_file_name)
   std::ofstream fout(file_name.c_str(), std::ios::out);
   if (CONV == 0)
     for(int i = 0; i < n; ++i)
-      fout << x[i] << " " << y[i]*FACTOR << "\n";
+      fout << x[i] << " " << y[i]*factor << "\n";
   if (CONV == 1)
     for(int i = n - 1; i >= 0; --i)
-      fout << eV2nm(x[i]) << " " << y[i]*FACTOR << "\n";
+      fout << eV2nm(x[i]) << " " << y[i]*factor << "\n";
   if (CONV == 2)
     for(int i = n - 1; i >= 0; --i)
-      fout << nm2eV(x[i]) << " " << y[i]*FACTOR << "\n";
+      fout << nm2eV(x[i]) << " " << y[i]*factor << "\n";
   fout.close();
 }
 
@@ -165,7 +165,7 @@ int main(int argc, char **argv)
   int nfile = file_list.size();
   for(int i = 0; i < nfile; ++i) {
     std::cout << "working on \'" << file_list[i] << "\'\n";
-    work(file_list[i]);
+    work(file_list[i], FACTOR);
   }
   return 0;
 }
