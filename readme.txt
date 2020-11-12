@@ -1,1 +1,1 @@
-Directory table3d which is DEFINITION OF THE TABULATED FUNCTION OF TWO ARGUMENTS is added.
+Simple scaling is added (scale.cpp).
