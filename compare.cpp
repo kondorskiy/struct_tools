@@ -26,11 +26,22 @@ using namespace std;
   Basic parameters to setup.
 *********************************************************************/
 
+// X-range:
+const double x_min = 375.0;
+const double x_max = 750.0;
+
 // Number of data files to compare.
-const int file_num = 2;
+const int file_num = 5;
 
 // Names of data files to compare.
-const string file_name[] = { "500.dat", "Xpol_extinct_crossect.dat"};
+const string file_name[] = { "540-plex.dat",
+  //"Ag15_lb=11B_TPP_SF1=1_SF2=1_ISO3_Th=45-X.dat",
+  // "540_SF1=1_Th=5_ISO.dat",
+  "540_SF1=1_SF2=2_Th=5_Ang1=00.dat",
+  "540_SF1=1_SF2=2_Th=5_Ang1=90.dat",
+  "Ag15_lb=11B_TPP_SF1=2_SF2=2_Ang1=00_Th=5_p5a.dat",
+  "Ag15_lb=11B_TPP_SF1=2_SF2=2_Ang1=00_Th=5_p5i.dat"
+   };
 
 
 /*********************************************************************
@@ -83,6 +94,8 @@ int main(int argc, char **argv)
   ofstream fout_p(plt_name.c_str(), ios::out);
   fout_p << "set term png enhanced size 1024,768" << endl;
   fout_p << "set output \"compare.png\"\n";
+  fout_p << "set xrange [" << x_min << ":" << x_max << "]\n";
+  fout_p << "set key reverse Left at graph 0.7, 0.2\n";
   fout_p << "plot \\" << endl;
 
   for (int i = 0; i < file_num; ++i) {
