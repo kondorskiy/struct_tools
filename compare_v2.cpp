@@ -22,9 +22,13 @@
 // ===== Parameters ====================================================================================================
 
 // Files with data to compare
-const int data_file_num = 2;
-const std::string data_file_name[] = {  "18nm-Bare-Exp.dat",
+const int data_file_num = 3;
+const std::string data_file_name[] = {  "11nm-Bare-Exp.dat",
+                                        "11nm-Bare-Num.dat",
                                         "avr2d_extinct_crossect.dat"};
+
+// Extra factors to multiply the data to correct errors in maxima detection caused by lack of interpolation.
+const double extra_fact[] = { 1.0, 1.0, 0.94 };
 
 // Wavelength range to plot 
 const double plot_wl_min = 450.0;
@@ -85,7 +89,7 @@ int main(void)
     file_name = "scale-" + data_file_name[i];
     fout.open(file_name.c_str(), std::ios::out);
     for (int j = 0; j < x.size(); ++j)
-      fout << x[j] << " " << tmp*y[j] << std::endl;
+      fout << x[j] << " " << extra_fact[i]*tmp*y[j] << std::endl;
     fout.close();
   }
 
@@ -108,8 +112,8 @@ int main(void)
   std::string command = "C:\\Soft\\gnuplot\\bin\\gnuplot.exe " + file_name;
   // std::string command = "gnuplot " + file_name;
   system(command.c_str());
-  // command = "rm " + file_name;
-  // system(command.c_str());
+  command = "rm " + file_name;
+  system(command.c_str());
 
   return 0;
 }
