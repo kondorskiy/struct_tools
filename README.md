@@ -7,3 +7,4 @@ Tools to manipulate with data-files.
   -- Improved version 'compare_v2.cpp' is added.
   -- Minor improvements in 'compare_v2.cpp'.
   -- Code to rare and interpolate experimental data to smooth noise is added.
+  -- Code to cleanup noisy experimental data (noisy_clean.cpp) is added.
